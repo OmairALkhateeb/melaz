@@ -1,0 +1,360 @@
+export type Lang = "ar" | "en";
+
+export const translations = {
+  nav: {
+    home: { ar: "الرئيسية", en: "Home" },
+    about: { ar: "عن الخدمة", en: "About" },
+    how: { ar: "كيف تعمل", en: "How it works" },
+    contact: { ar: "تواصل معنا", en: "Contact" },
+    whatsapp: { ar: "واتساب", en: "WhatsApp" },
+  },
+  hero: {
+    title: {
+      ar: "اعرض سيارتك أو ابحث عن سيارتك القادمة مع AL MELAZ MOTORS",
+      en: "List your car or find your next car with AL MELAZ MOTORS",
+    },
+    desc: {
+      ar: "مكتب سيارات يساعدك على عرض سيارتك بطريقة احترافية، ويتيح للزوار مشاهدة السيارات المتوفرة ومعرفة مواصفاتها وأسعارها، مع إمكانية التواصل المباشر لترتيب مشاهدة السيارة على أرض الواقع.",
+      en: "A car office that helps owners showcase their cars professionally, while allowing visitors to browse available cars, view details and prices, and arrange an in-person viewing.",
+    },
+    ctaWa: { ar: "تواصل عبر واتساب", en: "Contact on WhatsApp" },
+    ctaIg: { ar: "تابعنا على إنستغرام", en: "Follow on Instagram" },
+    ctaBrowse: { ar: "تصفح السيارات الموجودة", en: "Browse Available Cars" },
+    badge: { ar: "مكتب سيارات احترافي", en: "Professional Car Office" },
+  },
+  cars: {
+    title: { ar: "السيارات الموجودة", en: "Available Cars" },
+    subtitle: {
+      ar: "نخبة من السيارات المتوفرة حالياً للعرض والمشاهدة",
+      en: "A curated selection of cars currently available for viewing",
+    },
+    soon: { ar: "قريباً", en: "Coming Soon" },
+    placeholder: {
+      ar: "ستظهر هنا السيارات المتوفرة قريباً مع الصور والمواصفات والأسعار.",
+      en: "Available cars with photos, specs and prices will appear here soon.",
+    },
+    inquire: { ar: "استفسر عبر واتساب", en: "Inquire on WhatsApp" },
+    backHome: { ar: "العودة للرئيسية", en: "Back to Home" },
+    viewDetails: { ar: "عرض التفاصيل", en: "View Details" },
+    whatsapp: { ar: "واتساب", en: "WhatsApp" },
+    noImage: { ar: "لا توجد صورة", en: "No image" },
+    priceOnRequest: { ar: "السعر عند الطلب", en: "Price on request" },
+    mileageUnit: { ar: "كم", en: "km" },
+    resultsCount: { ar: "سيارة", en: "cars" },
+    clearAll: { ar: "مسح الكل", en: "Clear all" },
+    filtersTitle: { ar: "الفلاتر", en: "Filters" },
+    badges: {
+      featured: { ar: "مميزة", en: "Featured" },
+      new: { ar: "جديد", en: "New" },
+    },
+    favorite: {
+      add: { ar: "أضف للمفضلة", en: "Add to favorites" },
+      remove: { ar: "إزالة من المفضلة", en: "Remove from favorites" },
+    },
+    labels: {
+      brand: { ar: "الماركة", en: "Brand" },
+      model: { ar: "الموديل", en: "Model" },
+      trim: { ar: "الفئة", en: "Trim" },
+      year: { ar: "السنة", en: "Year" },
+      price: { ar: "السعر", en: "Price" },
+      mileage: { ar: "المسافة", en: "Mileage" },
+      color: { ar: "اللون", en: "Color" },
+      origin: { ar: "المنشأ", en: "Origin" },
+      city: { ar: "المدينة", en: "City" },
+      transmission: { ar: "ناقل الحركة", en: "Transmission" },
+      fuelType: { ar: "نوع الوقود", en: "Fuel type" },
+      engineSize: { ar: "حجم المحرك", en: "Engine size" },
+      drivetrain: { ar: "نظام الدفع", en: "Drivetrain" },
+      condition: { ar: "الحالة", en: "Condition" },
+    },
+    status: {
+      available: { ar: "متوفرة", en: "Available" },
+      sold: { ar: "مباعة", en: "Sold" },
+      reserved: { ar: "محجوزة", en: "Reserved" },
+      pending: { ar: "قيد المراجعة", en: "Pending" },
+    },
+    empty: {
+      title: { ar: "لا توجد سيارات حالياً", en: "No cars available right now" },
+      desc: {
+        ar: "لم نعثر على سيارات مطابقة. تواصل معنا عبر واتساب وسنساعدك في إيجاد ما يناسبك.",
+        en: "We couldn't find any matching cars. Contact us on WhatsApp and we'll help you find the right one.",
+      },
+    },
+    error: {
+      title: { ar: "تعذّر تحميل السيارات", en: "Couldn't load cars" },
+      desc: {
+        ar: "حدث خطأ أثناء جلب البيانات. يرجى المحاولة مرة أخرى.",
+        en: "Something went wrong while fetching cars. Please try again.",
+      },
+      retry: { ar: "إعادة المحاولة", en: "Try again" },
+    },
+    pagination: {
+      prev: { ar: "السابق", en: "Previous" },
+      next: { ar: "التالي", en: "Next" },
+      page: { ar: "صفحة", en: "Page" },
+      of: { ar: "من", en: "of" },
+      showing: { ar: "عرض", en: "Showing" },
+      results: { ar: "سيارة", en: "cars" },
+    },
+    filters: {
+      title: { ar: "تصفية السيارات", en: "Filter Cars" },
+      mobileDesc: {
+        ar: "اختر المعايير ثم اضغط تطبيق لعرض النتائج",
+        en: "Choose criteria then tap apply to update results",
+      },
+      search: { ar: "بحث", en: "Search" },
+      searchPlaceholder: { ar: "ابحث بالماركة أو الموديل...", en: "Search brand, model..." },
+      sort: { ar: "ترتيب", en: "Sort" },
+      bodyType: { ar: "نوع الهيكل", en: "Body type" },
+      transmission: { ar: "ناقل الحركة", en: "Transmission" },
+      fuelType: { ar: "نوع الوقود", en: "Fuel type" },
+      condition: { ar: "الحالة", en: "Condition" },
+      all: { ar: "الافتراضي", en: "Default" },
+      allBrands: { ar: "كل الماركات", en: "All brands" },
+      allModels: { ar: "كل الموديلات", en: "All models" },
+      allBodyTypes: { ar: "كل الأنواع", en: "All body types" },
+      allColors: { ar: "كل الألوان", en: "All colors" },
+      allOrigins: { ar: "كل المناشئ", en: "All origins" },
+      allTransmissions: { ar: "كل ناقلات الحركة", en: "All transmissions" },
+      allFuelTypes: { ar: "كل أنواع الوقود", en: "All fuel types" },
+      allConditions: { ar: "كل الحالات", en: "All conditions" },
+      allCities: { ar: "كل المدن", en: "All cities" },
+      min: { ar: "الحد الأدنى", en: "Min" },
+      max: { ar: "الحد الأقصى", en: "Max" },
+      reset: { ar: "مسح الفلاتر", en: "Clear filters" },
+      apply: { ar: "تطبيق", en: "Apply" },
+      applyFilters: { ar: "تطبيق الفلاتر", en: "Apply Filters" },
+      close: { ar: "إغلاق", en: "Close" },
+      loading: { ar: "جاري تحميل الفلاتر...", en: "Loading filters..." },
+      modalDesc: {
+        ar: "اختر المعايير ثم اضغط تطبيق الفلاتر لعرض النتائج",
+        en: "Choose your criteria, then apply filters to update the listing",
+      },
+      active: { ar: "فلتر نشط", en: "active" },
+      clearFilters: { ar: "مسح الفلاتر وعرض الكل", en: "Clear filters and show all" },
+      sortOptions: {
+        newest: { ar: "الأحدث", en: "Newest" },
+        oldest: { ar: "الأقدم", en: "Oldest" },
+        price_asc: { ar: "السعر: من الأقل للأعلى", en: "Price: low to high" },
+        price_desc: { ar: "السعر: من الأعلى للأقل", en: "Price: high to low" },
+        mileage_asc: { ar: "المسافة: من الأقل للأعلى", en: "Mileage: low to high" },
+        mileage_desc: { ar: "المسافة: من الأعلى للأقل", en: "Mileage: high to low" },
+        year_desc: { ar: "سنة أحدث", en: "Newer year" },
+        year_asc: { ar: "سنة أقدم", en: "Older year" },
+      },
+    },
+    detail: {
+      backToCars: { ar: "العودة للسيارات", en: "Back to cars" },
+      description: { ar: "الوصف", en: "Description" },
+      specifications: { ar: "المواصفات", en: "Specifications" },
+      relatedTitle: { ar: "سيارات مشابهة", en: "Similar cars" },
+      relatedSubtitle: {
+        ar: "قد تعجبك أيضاً هذه السيارات من نفس الماركة",
+        en: "You may also like these cars from the same brand",
+      },
+      notFoundTitle: { ar: "السيارة غير موجودة", en: "Car not found" },
+      notFoundDesc: {
+        ar: "لم نتمكن من العثور على هذه السيارة. ربما تم بيعها أو أزيلت من العرض.",
+        en: "We couldn't find this car. It may have been sold or removed from listing.",
+      },
+      browseCars: { ar: "تصفح السيارات", en: "Browse cars" },
+      contactWhatsApp: { ar: "تواصل عبر واتساب", en: "Contact on WhatsApp" },
+      galleryPrev: { ar: "الصورة السابقة", en: "Previous image" },
+      galleryNext: { ar: "الصورة التالية", en: "Next image" },
+      noDescription: {
+        ar: "لا يوجد وصف متاح حالياً. تواصل معنا للمزيد من التفاصيل.",
+        en: "No description available yet. Contact us for more details.",
+      },
+    },
+  },
+  services: {
+    title: { ar: "خدماتنا", en: "Our Services" },
+    subtitle: {
+      ar: "كل ما تحتاجه لعرض أو شراء سيارتك",
+      en: "Everything you need to list or find a car",
+    },
+    cards: [
+      {
+        t: { ar: "اعرض سيارتك عندنا", en: "List Your Car" },
+        d: {
+          ar: "نساعدك على عرض سيارتك بطريقة واضحة واحترافية للوصول إلى المهتمين.",
+          en: "We help you showcase your car professionally to reach serious buyers.",
+        },
+      },
+      {
+        t: { ar: "تصفح السيارات المتوفرة", en: "Browse Available Cars" },
+        d: {
+          ar: "شاهد السيارات المتاحة، المواصفات، الصور، والأسعار بطريقة سهلة.",
+          en: "Browse available cars, specifications, photos and prices easily.",
+        },
+      },
+      {
+        t: { ar: "مشاهدة السيارة على الواقع", en: "In-Person Car Viewing" },
+        d: {
+          ar: "تواصل معنا وسنرتب لك موعداً لمشاهدة السيارة مباشرة.",
+          en: "Get in touch and we'll arrange an in-person viewing for you.",
+        },
+      },
+    ],
+  },
+  how: {
+    title: { ar: "كيف تعمل الخدمة", en: "How It Works" },
+    subtitle: { ar: "أربع خطوات بسيطة", en: "Four simple steps" },
+    steps: [
+      { ar: "تواصل معنا", en: "Contact us" },
+      { ar: "أرسل معلومات السيارة أو اختر سيارة مهتم بها", en: "Send car details or choose a car" },
+      { ar: "نرتب التفاصيل والموعد", en: "We arrange details and appointment" },
+      { ar: "نرافقك لمشاهدة السيارة على الواقع", en: "We guide you to view the car in person" },
+    ],
+  },
+  ig: {
+    title: { ar: "تابعنا على إنستغرام", en: "Follow Us on Instagram" },
+    subtitle: {
+      ar: "كن على اطلاع بأحدث السيارات والعروض",
+      en: "Stay updated with our latest cars and offers",
+    },
+    office: { ar: "الصفحة الرسمية للمكتب", en: "Official office page" },
+    owner: { ar: "صفحة المالك المهندس عبادة الخطيب", en: "Owner — Eng. Obada Alkhateeb" },
+  },
+  contact: {
+    title: {
+      ar: "جاهز تعرض سيارتك أو تشوف السيارات المتوفرة؟",
+      en: "Ready to list your car or view available cars?",
+    },
+    desc: {
+      ar: "تواصل معنا الآن مباشرة عبر واتساب وسنكون بخدمتك",
+      en: "Contact us directly on WhatsApp and we'll take care of the rest",
+    },
+    btn: { ar: "تواصل الآن عبر واتساب", en: "Contact Now on WhatsApp" },
+    phone: { ar: "رقم التواصل", en: "Phone" },
+  },
+  footer: {
+    tag: { ar: "مكتب وتسويق سيارات", en: "Car Office & Brokerage" },
+    rights: { ar: "جميع الحقوق محفوظة", en: "All rights reserved" },
+  },
+  home: {
+    search: {
+      title: { ar: "ابحث عن سيارتك", en: "Find your car" },
+      placeholder: {
+        ar: "ابحث بالماركة أو الموديل أو السنة...",
+        en: "Search brand, model or year...",
+      },
+      brand: { ar: "الماركة", en: "Brand" },
+      anyBrand: { ar: "كل الماركات", en: "Any brand" },
+      year: { ar: "السنة", en: "Year" },
+      anyYear: { ar: "أي سنة", en: "Any year" },
+      priceMin: { ar: "السعر من", en: "Min price" },
+      priceMax: { ar: "السعر إلى", en: "Max price" },
+      anyPrice: { ar: "أي سعر", en: "Any" },
+      submit: { ar: "بحث", en: "Search" },
+      advanced: { ar: "بحث متقدم", en: "Advanced search" },
+    },
+    brands: {
+      title: { ar: "تصفح حسب الماركة", en: "Browse by Brand" },
+      subtitle: {
+        ar: "اختر ماركتك المفضلة وابدأ البحث",
+        en: "Pick your favorite brand and start exploring",
+      },
+      viewAll: { ar: "عرض كل الماركات", en: "View all brands" },
+    },
+    bodyTypes: {
+      title: { ar: "تصفح حسب نوع الهيكل", en: "Browse by Body Type" },
+      subtitle: { ar: "اختر النوع الذي يناسب احتياجك", en: "Choose the type that fits your needs" },
+    },
+    featured: {
+      title: { ar: "سيارات مميزة", en: "Featured Cars" },
+      subtitle: { ar: "مختارات بارزة من معرضنا", en: "Standout picks from our showroom" },
+      viewAll: { ar: "عرض الكل", en: "View all" },
+    },
+    latest: {
+      title: { ar: "وصل حديثاً", en: "New Arrivals" },
+      subtitle: {
+        ar: "أحدث السيارات المضافة إلى المعرض",
+        en: "The newest cars added to our showroom",
+      },
+      viewAll: { ar: "تصفح كل السيارات", en: "Browse all cars" },
+    },
+    why: {
+      title: { ar: "لماذا الملاذ موتورز", en: "Why AL MELAZ MOTORS" },
+      subtitle: {
+        ar: "نوفّر لك تجربة شراء واضحة وموثوقة",
+        en: "A transparent, trustworthy buying experience",
+      },
+      stats: {
+        cars: { ar: "سيارة معروضة", en: "Cars listed" },
+        brands: { ar: "ماركة متوفرة", en: "Brands available" },
+        support: { ar: "دعم ومتابعة", en: "Support" },
+      },
+      cards: [
+        {
+          t: { ar: "سيارات موثوقة", en: "Trusted cars" },
+          d: {
+            ar: "نعرض سيارات مفحوصة بمواصفات واضحة وصور حقيقية.",
+            en: "We list inspected cars with clear specs and real photos.",
+          },
+        },
+        {
+          t: { ar: "شفافية كاملة", en: "Full transparency" },
+          d: {
+            ar: "أسعار واضحة وتفاصيل دقيقة بدون مفاجآت.",
+            en: "Clear pricing and accurate details with no surprises.",
+          },
+        },
+        {
+          t: { ar: "تواصل مباشر", en: "Direct contact" },
+          d: {
+            ar: "تواصل معنا مباشرة عبر واتساب لترتيب المعاينة.",
+            en: "Reach us directly on WhatsApp to arrange a viewing.",
+          },
+        },
+      ],
+    },
+    faq: {
+      title: { ar: "أسئلة شائعة", en: "Frequently Asked Questions" },
+      subtitle: {
+        ar: "إجابات سريعة لأكثر الأسئلة تكراراً",
+        en: "Quick answers to the most common questions",
+      },
+      items: [
+        {
+          q: { ar: "كيف أشتري سيارة من المعرض؟", en: "How do I buy a car?" },
+          a: {
+            ar: "تصفح السيارات، اختر التي تناسبك، ثم تواصل معنا عبر واتساب لترتيب موعد معاينة ومتابعة الإجراءات.",
+            en: "Browse the cars, pick the one you like, then contact us on WhatsApp to arrange a viewing and complete the process.",
+          },
+        },
+        {
+          q: { ar: "هل الأسعار قابلة للتفاوض؟", en: "Are prices negotiable?" },
+          a: {
+            ar: "تواصل معنا عبر واتساب لمناقشة التفاصيل وأي عروض متاحة على السيارة.",
+            en: "Contact us on WhatsApp to discuss details and any available offers on the car.",
+          },
+        },
+        {
+          q: {
+            ar: "هل يمكنني معاينة السيارة قبل الشراء؟",
+            en: "Can I inspect the car before buying?",
+          },
+          a: {
+            ar: "بالتأكيد. نرتب لك موعداً لمعاينة السيارة على أرض الواقع قبل اتخاذ القرار.",
+            en: "Absolutely. We'll arrange an in-person viewing before you decide.",
+          },
+        },
+        {
+          q: { ar: "هل تتوفر سيارات جديدة باستمرار؟", en: "Do you add new cars regularly?" },
+          a: {
+            ar: 'نعم، نضيف سيارات جديدة باستمرار. تابع قسم "وصل حديثاً" أو إنستغرام لأحدث العروض.',
+            en: "Yes, we add new cars regularly. Check the New Arrivals section or our Instagram for the latest.",
+          },
+        },
+      ],
+    },
+  },
+};
+
+export const links = {
+  whatsapp: "https://wa.me/963994396648",
+  phone: "0994396648",
+  igOffice: "https://www.instagram.com/al_melaz_motors/",
+  igOwner: "https://www.instagram.com/obada.alkhateeb1/",
+};
