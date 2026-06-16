@@ -3,7 +3,7 @@ import { keepPreviousData, queryOptions, useQuery } from "@tanstack/react-query"
 import { getCarBySlug, getCarFilters, getCars } from "./cars";
 import { carQueryKeys } from "./query-keys";
 import { stableCarsListParams } from "./stable-params";
-import type { Car, CarFiltersParams, CarsListParams } from "./types";
+import type { Car, CarFiltersParams, CarsListParams, CarsListResponse } from "./types";
 
 const STALE_TIME_LIST_MS = 1000 * 60 * 2;
 const STALE_TIME_DETAIL_MS = 1000 * 60 * 5;
@@ -41,9 +41,14 @@ export function carFiltersQueryOptions(params?: CarFiltersParams) {
   });
 }
 
-/** Paginated cars listing — keeps previous page visible while refetching. */
-export function useCarsList(params?: CarsListParams) {
-  return useQuery(carsListQueryOptions(params));
+/** Paginated cars listing — keeps previous page visible while refetching.
+ * Pass initialData from the route loader so SSR and the first client render match. */
+export function useCarsList(params?: CarsListParams, options?: { initialData?: CarsListResponse }) {
+  return useQuery({
+    ...carsListQueryOptions(params),
+    initialData: options?.initialData,
+    initialDataUpdatedAt: options?.initialData ? Date.now() : undefined,
+  });
 }
 
 /** Single car by slug. Pass initialData from route loader to avoid loading flash. */

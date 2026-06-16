@@ -12,7 +12,7 @@ Create a `.env` file in the project root (copy from `.env.example`):
 
 | Variable | Required | Description | Example |
 |----------|----------|-------------|---------|
-| `VITE_API_BASE_URL` | **Yes** | Laravel API origin (no trailing slash) | `http://localhost:8000` |
+| `VITE_API_BASE_URL` | **Yes** | Laravel API origin (no trailing slash) | `http://melaz-motors.livetech.it.com` |
 | `VITE_WHATSAPP_NUMBER` | Recommended | Default business WhatsApp (international digits) | `963994396648` |
 | `VITE_SITE_URL` | Optional | Public site URL for WhatsApp message links | `https://almelazmotors.com` |
 
@@ -23,6 +23,7 @@ Create a `.env` file in the project root (copy from `.env.example`):
 - Production builds embed env values at build time — set them in your hosting/CI environment.
 
 ---
+
 
 ## 2. API endpoints used
 
@@ -249,7 +250,7 @@ curl "http://localhost:8000/api/car-filters"
 Edit `.env`:
 
 ```env
-VITE_API_BASE_URL=https://api.almelazmotors.com
+VITE_API_BASE_URL=http://melaz-motors.livetech.it.com
 VITE_SITE_URL=https://almelazmotors.com
 VITE_WHATSAPP_NUMBER=963994396648
 ```
@@ -263,7 +264,7 @@ Ensure Laravel CORS allows your local origin if testing from localhost.
 Set environment variables in your hosting platform **before** running `npm run build`:
 
 ```env
-VITE_API_BASE_URL=https://api.almelazmotors.com
+VITE_API_BASE_URL=http://melaz-motors.livetech.it.com
 VITE_SITE_URL=https://almelazmotors.com
 VITE_WHATSAPP_NUMBER=963994396648
 ```

@@ -11,7 +11,7 @@ import {
   isEmptyPaginated,
   type CarsSearchParams,
 } from "@/lib/api";
-import { DEFAULT_CAR_SORT, type CarSort } from "@/lib/api/types";
+import { DEFAULT_CAR_SORT, type CarSort, type CarsListResponse } from "@/lib/api/types";
 import { CARS_PER_PAGE } from "@/features/cars/utils";
 import {
   carsSearchToListParams,
@@ -32,9 +32,10 @@ import { cn } from "@/lib/utils";
 
 type CarsPageProps = {
   search: CarsSearchParams;
+  initialData?: CarsListResponse;
 };
 
-export function CarsPage({ search }: CarsPageProps) {
+export function CarsPage({ search, initialData }: CarsPageProps) {
   const { lang, tr } = useTr();
   const [filtersOpen, setFiltersOpen] = useState(false);
   const { applySearch, replaceSearch, resetFilters } = useCarsSearchNavigation();
@@ -42,7 +43,7 @@ export function CarsPage({ search }: CarsPageProps) {
   const listParams = useMemo(() => carsSearchToListParams(search, CARS_PER_PAGE), [search]);
 
   const { data, isLoading, isError, error, refetch, isFetching, isPlaceholderData } =
-    useCarsList(listParams);
+    useCarsList(listParams, { initialData });
 
   // Shared filter metadata for the desktop sidebar and the active-filter chips.
   const filterParams = useMemo(

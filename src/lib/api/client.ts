@@ -1,6 +1,6 @@
 import type { CarsListParams } from "./types";
 
-const DEFAULT_API_BASE_URL = "http://localhost:8000";
+const DEFAULT_API_BASE_URL = "http://melaz-motors.livetech.it.com";
 const DEFAULT_REQUEST_TIMEOUT_MS = 30_000;
 
 export class ApiError extends Error {
