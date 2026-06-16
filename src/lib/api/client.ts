@@ -35,11 +35,21 @@ export function getApiErrorMessage(error: unknown, fallback = "Something went wr
   return fallback;
 }
 
-/** Reads VITE_API_BASE_URL and normalizes trailing slashes. */
+/**
+ * Resolves the API origin used to build request URLs.
+ * - An explicit VITE_API_BASE_URL wins (use `/` or an empty value to force
+ *   same-origin/relative requests; a full origin like `https://api.example.com`
+ *   targets that host directly).
+ * - With no override, production builds use relative paths (served behind the
+ *   Vercel proxy in `vercel.json`, which avoids https→http mixed-content), while
+ *   local dev falls back to the dev backend.
+ */
 export function getApiBaseUrl(): string {
   const raw = import.meta.env.VITE_API_BASE_URL?.trim();
-  const base = raw || DEFAULT_API_BASE_URL;
-  return base.replace(/\/+$/, "");
+  if (raw !== undefined && raw !== "") {
+    return raw === "/" ? "" : raw.replace(/\/+$/, "");
+  }
+  return import.meta.env.PROD ? "" : DEFAULT_API_BASE_URL.replace(/\/+$/, "");
 }
 
 type QueryParamValue = string | number | boolean | null | undefined;
