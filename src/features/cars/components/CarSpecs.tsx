@@ -25,7 +25,6 @@ export function CarSpecs({ car, price }: CarSpecsProps) {
     { label: tr(t.cars.labels.trim), value: getCarField(car, "trim", ["trim", "variant"]) ?? "" },
     { label: tr(t.cars.labels.year), value: car.year != null ? String(car.year) : "" },
     { label: tr(t.cars.labels.price), value: price },
-    { label: tr(t.cars.labels.mileage), value: mileage ?? "" },
     { label: tr(t.cars.labels.color), value: getCarField(car, "color") ?? "" },
     { label: tr(t.cars.labels.origin), value: getCarField(car, "origin") ?? "" },
     {
@@ -49,6 +48,7 @@ export function CarSpecs({ car, price }: CarSpecsProps) {
       value: getCarField(car, "condition", ["condition", "car_condition"]) ?? "",
     },
     { label: tr(t.cars.labels.city), value: city ?? "" },
+    { label: tr(t.cars.labels.mileage), value: mileage ?? "" },
   ].filter((item) => item.value.trim().length > 0);
 
   if (!items.length) return null;
@@ -77,17 +77,21 @@ export function CarSpecsSummary({ car, price }: CarSpecsProps) {
 
   const highlights = [
     car.year != null ? String(car.year) : null,
-    mileage,
     getCarField(car, "transmission"),
     getCarField(car, "fuel_type", ["fuel_type", "fuel"]),
     city,
   ].filter(Boolean) as string[];
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       <p className="text-2xl sm:text-3xl font-bold text-gradient">{price}</p>
       {highlights.length > 0 && (
         <p className="text-sm text-muted-foreground">{highlights.join(" · ")}</p>
+      )}
+      {mileage && (
+        <p className="text-xs text-muted-foreground/70">
+          {tr(t.cars.labels.mileage)}: {mileage}
+        </p>
       )}
     </div>
   );

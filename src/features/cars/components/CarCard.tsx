@@ -3,10 +3,6 @@ import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   Car as CarIcon,
-  Gauge,
-  MapPin,
-  Palette,
-  Globe,
   Heart,
   Star,
 } from "lucide-react";
@@ -33,26 +29,6 @@ type CarCardProps = {
   car: Car;
   index?: number;
 };
-
-function SpecRow({
-  icon: Icon,
-  label,
-  value,
-}: {
-  icon: typeof CarIcon;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="flex items-start gap-2 min-w-0">
-      <Icon className="w-3.5 h-3.5 text-primary-glow shrink-0 mt-0.5" aria-hidden />
-      <div className="min-w-0">
-        <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{label}</span>
-        <p className="text-xs text-foreground truncate">{value}</p>
-      </div>
-    </div>
-  );
-}
 
 function StatusBadge({ status, lang }: { status: string; lang: "ar" | "en" }) {
   const key = getStatusKey(status);
@@ -129,7 +105,13 @@ export const CarCard = memo(function CarCard({ car, index = 0 }: CarCardProps) {
           aria-label={title}
         >
           {imageUrl && !imageFailed ? (
-            <CarImage src={imageUrl} alt={title} onError={() => setImageFailed(true)} />
+            <CarImage
+              src={imageUrl}
+              alt={title}
+              priority={index === 0}
+              fallbackLabel={tr(t.cars.noImage)}
+              onError={() => setImageFailed(true)}
+            />
           ) : (
             <CarCardImagePlaceholder label={tr(t.cars.noImage)} />
           )}
@@ -173,21 +155,35 @@ export const CarCard = memo(function CarCard({ car, index = 0 }: CarCardProps) {
             </h3>
           </Link>
 
-          <p className="mt-3 text-lg font-bold text-gold">{price}</p>
+          <p className="mt-2 text-xl sm:text-2xl font-bold text-gold">{price}</p>
 
-          <div className="mt-4 grid grid-cols-2 gap-x-3 gap-y-2.5">
-            {car.year != null && (
-              <SpecRow icon={CarIcon} label={tr(t.cars.labels.year)} value={String(car.year)} />
-            )}
-            {mileage && <SpecRow icon={Gauge} label={tr(t.cars.labels.mileage)} value={mileage} />}
+          <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1.5 text-xs text-muted-foreground">
+            {car.year != null && <span>{String(car.year)}</span>}
             {car.color && (
-              <SpecRow icon={Palette} label={tr(t.cars.labels.color)} value={car.color} />
+              <>
+                <span aria-hidden>·</span>
+                <span>{car.color}</span>
+              </>
+            )}
+            {city && (
+              <>
+                <span aria-hidden>·</span>
+                <span>{city}</span>
+              </>
             )}
             {car.origin && (
-              <SpecRow icon={Globe} label={tr(t.cars.labels.origin)} value={car.origin} />
+              <>
+                <span aria-hidden>·</span>
+                <span>{car.origin}</span>
+              </>
             )}
-            {city && <SpecRow icon={MapPin} label={tr(t.cars.labels.city)} value={city} />}
           </div>
+
+          {mileage && (
+            <p className="mt-1.5 text-[11px] text-muted-foreground/70">
+              {tr(t.cars.labels.mileage)}: {mileage}
+            </p>
+          )}
 
           <div className="mt-auto pt-5 flex flex-col sm:flex-row gap-2">
             <Link

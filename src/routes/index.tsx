@@ -66,6 +66,9 @@ function Index() {
               <img
                 src={logo}
                 alt="AL MELAZ MOTORS"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="relative w-52 sm:w-72 lg:w-[26rem] object-contain drop-shadow-[0_0_60px_oklch(0.62_0.22_290_/_0.7)]"
               />
             </div>

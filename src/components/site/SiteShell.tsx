@@ -10,7 +10,7 @@ type NavItem = { to: string; hash?: string; label: { ar: string; en: string } };
 const navItems: NavItem[] = [
   { to: "/", label: t.nav.home },
   { to: "/cars", label: t.cars.title },
-  { to: "/", hash: "services", label: t.nav.about },
+  { to: "/", hash: "how", label: t.nav.about },
   { to: "/", hash: "how", label: t.nav.how },
   { to: "/", hash: "contact", label: t.nav.contact },
 ];

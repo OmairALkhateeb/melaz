@@ -7,6 +7,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { useCarFilters } from "@/lib/api/queries";
 import { mapFilterOptions } from "@/features/cars/components/filters/filter-options";
 import { bodyTypePhotoSrc } from "@/features/cars/body-type-photos";
+import { StaticImage } from "@/features/cars/components/CarImage";
 
 export function BrowseByBodyType() {
   const { lang, tr } = useTr();
@@ -48,11 +49,19 @@ export function BrowseByBodyType() {
                       className="group relative block aspect-[4/3] rounded-2xl overflow-hidden glass hover:border-primary/50 hover:shadow-[var(--shadow-glow)] transition-all duration-500"
                     >
                       {photo ? (
-                        <img
+                        <StaticImage
                           src={photo}
                           alt={b.label}
-                          loading="lazy"
                           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          fallback={
+                            <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(ellipse_at_center,oklch(0.28_0.08_290/0.5),transparent_70%)]">
+                              <CarIcon
+                                className="w-12 h-12 text-primary-glow/70"
+                                strokeWidth={1.2}
+                                aria-hidden
+                              />
+                            </div>
+                          }
                         />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(ellipse_at_center,oklch(0.28_0.08_290/0.5),transparent_70%)]">

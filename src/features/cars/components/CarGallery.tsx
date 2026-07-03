@@ -79,6 +79,7 @@ export function CarGallery({ images }: CarGalleryProps) {
                     src={image.url}
                     alt={image.alt}
                     priority={index === 0}
+                    fallbackLabel={tr(t.cars.noImage)}
                     className="transition-transform duration-300"
                   />
                 </div>

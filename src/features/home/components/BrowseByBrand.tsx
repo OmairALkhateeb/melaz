@@ -7,6 +7,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { useCarFilters } from "@/lib/api/queries";
 import { mapFilterOptions } from "@/features/cars/components/filters/filter-options";
 import { brandLogoSrc } from "@/features/cars/brand-logos";
+import { StaticImage } from "@/features/cars/components/CarImage";
 import { cn } from "@/lib/utils";
 
 export function BrowseByBrand() {
@@ -30,7 +31,7 @@ export function BrowseByBrand() {
         <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
           {isLoading
             ? Array.from({ length: 12 }).map((_, i) => (
-                <div key={i} className="h-24 rounded-2xl glass animate-pulse" />
+                <div key={i} className="h-28 rounded-2xl glass animate-pulse" />
               ))
             : brands.map((b, i) => {
                 const logo = brandLogoSrc(b.value);
@@ -41,19 +42,26 @@ export function BrowseByBrand() {
                       search={{ brand: b.value }}
                       aria-label={b.label}
                       className={cn(
-                        "group relative bg-white rounded-2xl h-24 flex items-center justify-center p-5",
+                        "group relative bg-white rounded-2xl h-28 flex flex-col items-center justify-center gap-1.5 p-3",
                         "shadow-md hover:-translate-y-1 hover:shadow-[var(--shadow-glow)] transition-all duration-300",
                       )}
                     >
+                      <span className="text-[11px] sm:text-xs font-bold text-neutral-800 text-center line-clamp-2 leading-tight px-1">
+                        {b.label}
+                      </span>
                       {logo ? (
-                        <img
+                        <StaticImage
                           src={logo}
-                          alt={b.label}
-                          loading="lazy"
-                          className="max-h-12 max-w-[80%] object-contain transition-transform duration-300 group-hover:scale-105"
+                          alt={`${b.label} logo`}
+                          className="max-h-9 max-w-[70%] object-contain transition-transform duration-300 group-hover:scale-105"
+                          fallback={
+                            <span className="text-[10px] font-semibold text-neutral-500 text-center">
+                              {b.label}
+                            </span>
+                          }
                         />
                       ) : (
-                        <span className="text-sm font-bold text-neutral-800 text-center">
+                        <span className="text-[10px] font-semibold text-neutral-500 text-center">
                           {b.label}
                         </span>
                       )}

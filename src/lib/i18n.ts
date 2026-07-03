@@ -10,17 +10,17 @@ export const translations = {
   },
   hero: {
     title: {
-      ar: "اعرض سيارتك أو ابحث عن سيارتك القادمة مع AL MELAZ MOTORS",
-      en: "List your car or find your next car with AL MELAZ MOTORS",
+      ar: "اعرض سيارتك أو ابحث عن سيارتك القادمة",
+      en: "List your car or find your next one",
     },
     desc: {
-      ar: "مكتب سيارات يساعدك على عرض سيارتك بطريقة احترافية، ويتيح للزوار مشاهدة السيارات المتوفرة ومعرفة مواصفاتها وأسعارها، مع إمكانية التواصل المباشر لترتيب مشاهدة السيارة على أرض الواقع.",
-      en: "A car office that helps owners showcase their cars professionally, while allowing visitors to browse available cars, view details and prices, and arrange an in-person viewing.",
+      ar: "معرض سيارات بمواصفات وأسعار واضحة. تواصل معنا لترتيب المعاينة.",
+      en: "A car showroom with clear specs and prices. Contact us to arrange a viewing.",
     },
     ctaWa: { ar: "تواصل عبر واتساب", en: "Contact on WhatsApp" },
     ctaIg: { ar: "تابعنا على إنستغرام", en: "Follow on Instagram" },
-    ctaBrowse: { ar: "تصفح السيارات الموجودة", en: "Browse Available Cars" },
-    badge: { ar: "مكتب سيارات احترافي", en: "Professional Car Office" },
+    ctaBrowse: { ar: "تصفح السيارات", en: "Browse Cars" },
+    badge: { ar: "AL MELAZ MOTORS", en: "AL MELAZ MOTORS" },
   },
   cars: {
     title: { ar: "السيارات الموجودة", en: "Available Cars" },
@@ -57,7 +57,7 @@ export const translations = {
       trim: { ar: "الفئة", en: "Trim" },
       year: { ar: "السنة", en: "Year" },
       price: { ar: "السعر", en: "Price" },
-      mileage: { ar: "المسافة", en: "Mileage" },
+      mileage: { ar: "العداد", en: "Mileage" },
       color: { ar: "اللون", en: "Color" },
       origin: { ar: "المنشأ", en: "Origin" },
       city: { ar: "المدينة", en: "City" },
@@ -137,8 +137,8 @@ export const translations = {
         oldest: { ar: "الأقدم", en: "Oldest" },
         price_asc: { ar: "السعر: من الأقل للأعلى", en: "Price: low to high" },
         price_desc: { ar: "السعر: من الأعلى للأقل", en: "Price: high to low" },
-        mileage_asc: { ar: "المسافة: من الأقل للأعلى", en: "Mileage: low to high" },
-        mileage_desc: { ar: "المسافة: من الأعلى للأقل", en: "Mileage: high to low" },
+        mileage_asc: { ar: "العداد: من الأقل للأعلى", en: "Mileage: low to high" },
+        mileage_desc: { ar: "العداد: من الأعلى للأقل", en: "Mileage: high to low" },
         year_desc: { ar: "سنة أحدث", en: "Newer year" },
         year_asc: { ar: "سنة أقدم", en: "Older year" },
       },
@@ -199,33 +199,33 @@ export const translations = {
   },
   how: {
     title: { ar: "كيف تعمل الخدمة", en: "How It Works" },
-    subtitle: { ar: "أربع خطوات بسيطة", en: "Four simple steps" },
+    subtitle: { ar: "4 خطوات", en: "4 steps" },
     steps: [
       { ar: "تواصل معنا", en: "Contact us" },
-      { ar: "أرسل معلومات السيارة أو اختر سيارة مهتم بها", en: "Send car details or choose a car" },
-      { ar: "نرتب التفاصيل والموعد", en: "We arrange details and appointment" },
-      { ar: "نرافقك لمشاهدة السيارة على الواقع", en: "We guide you to view the car in person" },
+      { ar: "اختر سيارة أو أرسل بيانات سيارتك", en: "Pick a car or send your car details" },
+      { ar: "نرتّب الموعد", en: "We schedule a visit" },
+      { ar: "معاينة على أرض الواقع", en: "In-person viewing" },
     ],
   },
   ig: {
     title: { ar: "تابعنا على إنستغرام", en: "Follow Us on Instagram" },
     subtitle: {
-      ar: "كن على اطلاع بأحدث السيارات والعروض",
-      en: "Stay updated with our latest cars and offers",
+      ar: "أحدث السيارات والعروض",
+      en: "Latest cars and offers",
     },
-    office: { ar: "الصفحة الرسمية للمكتب", en: "Official office page" },
-    owner: { ar: "صفحة المالك المهندس عبادة الخطيب", en: "Owner — Eng. Obada Alkhateeb" },
+    office: { ar: "الصفحة الرسمية", en: "Official page" },
+    owner: { ar: "المهندس عبادة الخطيب", en: "Eng. Obada Alkhateeb" },
   },
   contact: {
     title: {
-      ar: "جاهز تعرض سيارتك أو تشوف السيارات المتوفرة؟",
-      en: "Ready to list your car or view available cars?",
+      ar: "جاهز للتواصل؟",
+      en: "Ready to get started?",
     },
     desc: {
-      ar: "تواصل معنا الآن مباشرة عبر واتساب وسنكون بخدمتك",
-      en: "Contact us directly on WhatsApp and we'll take care of the rest",
+      ar: "تواصل معنا عبر واتساب",
+      en: "Contact us on WhatsApp",
     },
-    btn: { ar: "تواصل الآن عبر واتساب", en: "Contact Now on WhatsApp" },
+    btn: { ar: "تواصل عبر واتساب", en: "Contact on WhatsApp" },
     phone: { ar: "رقم التواصل", en: "Phone" },
   },
   footer: {
@@ -250,101 +250,101 @@ export const translations = {
       advanced: { ar: "بحث متقدم", en: "Advanced search" },
     },
     brands: {
-      title: { ar: "تصفح حسب الماركة", en: "Browse by Brand" },
+      title: { ar: "تصفح حسب الشركة", en: "Browse by Company" },
       subtitle: {
-        ar: "اختر ماركتك المفضلة وابدأ البحث",
-        en: "Pick your favorite brand and start exploring",
+        ar: "اختر الشركة وابدأ البحث",
+        en: "Pick a company and start browsing",
       },
-      viewAll: { ar: "عرض كل الماركات", en: "View all brands" },
+      viewAll: { ar: "عرض كل الشركات", en: "View all companies" },
     },
     bodyTypes: {
       title: { ar: "تصفح حسب نوع الهيكل", en: "Browse by Body Type" },
-      subtitle: { ar: "اختر النوع الذي يناسب احتياجك", en: "Choose the type that fits your needs" },
+      subtitle: { ar: "اختر النوع المناسب", en: "Choose your preferred type" },
     },
     featured: {
       title: { ar: "سيارات مميزة", en: "Featured Cars" },
-      subtitle: { ar: "مختارات بارزة من معرضنا", en: "Standout picks from our showroom" },
+      subtitle: { ar: "مختارات من المعرض", en: "Hand-picked from our showroom" },
       viewAll: { ar: "عرض الكل", en: "View all" },
     },
     latest: {
       title: { ar: "وصل حديثاً", en: "New Arrivals" },
       subtitle: {
-        ar: "أحدث السيارات المضافة إلى المعرض",
-        en: "The newest cars added to our showroom",
+        ar: "آخر السيارات المضافة",
+        en: "Recently added cars",
       },
-      viewAll: { ar: "تصفح كل السيارات", en: "Browse all cars" },
+      viewAll: { ar: "تصفح الكل", en: "Browse all" },
     },
     why: {
       title: { ar: "لماذا الملاذ موتورز", en: "Why AL MELAZ MOTORS" },
       subtitle: {
-        ar: "نوفّر لك تجربة شراء واضحة وموثوقة",
-        en: "A transparent, trustworthy buying experience",
+        ar: "تجربة شراء واضحة وموثوقة",
+        en: "A clear, trustworthy experience",
       },
       stats: {
         cars: { ar: "سيارة معروضة", en: "Cars listed" },
-        brands: { ar: "ماركة متوفرة", en: "Brands available" },
+        brands: { ar: "شركة متوفرة", en: "Companies available" },
         support: { ar: "دعم ومتابعة", en: "Support" },
       },
       cards: [
         {
           t: { ar: "سيارات موثوقة", en: "Trusted cars" },
           d: {
-            ar: "نعرض سيارات مفحوصة بمواصفات واضحة وصور حقيقية.",
-            en: "We list inspected cars with clear specs and real photos.",
+            ar: "مواصفات واضحة وصور حقيقية.",
+            en: "Clear specs and real photos.",
           },
         },
         {
-          t: { ar: "شفافية كاملة", en: "Full transparency" },
+          t: { ar: "أسعار واضحة", en: "Clear pricing" },
           d: {
-            ar: "أسعار واضحة وتفاصيل دقيقة بدون مفاجآت.",
-            en: "Clear pricing and accurate details with no surprises.",
+            ar: "تفاصيل دقيقة بدون مفاجآت.",
+            en: "Accurate details, no surprises.",
           },
         },
         {
           t: { ar: "تواصل مباشر", en: "Direct contact" },
           d: {
-            ar: "تواصل معنا مباشرة عبر واتساب لترتيب المعاينة.",
-            en: "Reach us directly on WhatsApp to arrange a viewing.",
+            ar: "واتساب لترتيب المعاينة.",
+            en: "WhatsApp to arrange a viewing.",
           },
         },
       ],
     },
     faq: {
-      title: { ar: "أسئلة شائعة", en: "Frequently Asked Questions" },
+      title: { ar: "أسئلة شائعة", en: "FAQ" },
       subtitle: {
-        ar: "إجابات سريعة لأكثر الأسئلة تكراراً",
-        en: "Quick answers to the most common questions",
+        ar: "إجابات سريعة",
+        en: "Quick answers",
       },
       items: [
         {
-          q: { ar: "كيف أشتري سيارة من المعرض؟", en: "How do I buy a car?" },
+          q: { ar: "كيف أشتري سيارة؟", en: "How do I buy a car?" },
           a: {
-            ar: "تصفح السيارات، اختر التي تناسبك، ثم تواصل معنا عبر واتساب لترتيب موعد معاينة ومتابعة الإجراءات.",
-            en: "Browse the cars, pick the one you like, then contact us on WhatsApp to arrange a viewing and complete the process.",
+            ar: "اختر سيارة، ثم تواصل معنا عبر واتساب لترتيب المعاينة.",
+            en: "Pick a car, then contact us on WhatsApp to arrange a viewing.",
           },
         },
         {
           q: { ar: "هل الأسعار قابلة للتفاوض؟", en: "Are prices negotiable?" },
           a: {
-            ar: "تواصل معنا عبر واتساب لمناقشة التفاصيل وأي عروض متاحة على السيارة.",
-            en: "Contact us on WhatsApp to discuss details and any available offers on the car.",
+            ar: "تواصل معنا عبر واتساب لمناقشة السعر.",
+            en: "Contact us on WhatsApp to discuss pricing.",
           },
         },
         {
           q: {
-            ar: "هل يمكنني معاينة السيارة قبل الشراء؟",
+            ar: "هل يمكن معاينة السيارة قبل الشراء؟",
             en: "Can I inspect the car before buying?",
           },
           a: {
-            ar: "بالتأكيد. نرتب لك موعداً لمعاينة السيارة على أرض الواقع قبل اتخاذ القرار.",
-            en: "Absolutely. We'll arrange an in-person viewing before you decide.",
+            ar: "نعم، نرتّب موعد معاينة على أرض الواقع.",
+            en: "Yes, we arrange an in-person viewing.",
           },
         },
         {
-          q: { ar: "هل تتوفر سيارات جديدة باستمرار؟", en: "Do you add new cars regularly?" },
+          q: { ar: "هل تُضاف سيارات جديدة؟", en: "Do you add new cars?" },
           a: {
-            ar: 'نعم، نضيف سيارات جديدة باستمرار. تابع قسم "وصل حديثاً" أو إنستغرام لأحدث العروض.',
-            en: "Yes, we add new cars regularly. Check the New Arrivals section or our Instagram for the latest.",
+            ar: 'نعم. تابع "وصل حديثاً" أو إنستغرام.',
+            en: 'Yes. Check "New Arrivals" or Instagram.',
           },
         },
       ],
