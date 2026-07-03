@@ -43,6 +43,8 @@ export const carSchema = z
     whatsapp_number: z.string().nullable().optional(),
     location: z.string().nullable().optional(),
     status: z.string().nullable().optional(),
+    status_label: z.string().nullable().optional(),
+    is_featured: z.boolean().nullable().optional(),
     featured_image: z.string().nullable().optional(),
     images: z.array(carImageSchema).optional(),
     description: localizedStringSchema.nullable().optional(),

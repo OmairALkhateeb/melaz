@@ -34,6 +34,7 @@ export interface Car {
   whatsapp_number?: string | null;
   location?: string | null;
   status?: string | null;
+  status_label?: string | null;
   is_featured?: boolean | null;
   featured_image?: string | null;
   images?: CarImage[];
@@ -82,6 +83,9 @@ export const CAR_SORT_VALUES = [
 
 export type CarSort = (typeof CAR_SORT_VALUES)[number];
 
+export const CAR_STATUS_VALUES = ["available", "sold"] as const;
+export type CarStatus = (typeof CAR_STATUS_VALUES)[number];
+
 export const DEFAULT_CAR_SORT: CarSort = "newest";
 
 /** URL search params for /cars — shareable filter state */
@@ -104,6 +108,7 @@ export interface CarsSearchParams {
   condition?: string;
   city?: string;
   sort?: CarSort;
+  status?: CarStatus;
 }
 
 /** Query params accepted by GET /api/cars */
@@ -128,6 +133,7 @@ export interface CarsListParams {
   condition?: string;
   city?: string;
   is_featured?: boolean;
+  status?: CarStatus;
 }
 
 export interface CarFiltersParams {

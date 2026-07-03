@@ -18,43 +18,18 @@ import {
   getCarDetailSlug,
   getCarPrimaryImage,
   getCarTitle,
-  getStatusKey,
+  isCarSold,
 } from "@/features/cars/utils";
 import { useFavorite } from "@/features/cars/hooks/useFavorites";
 import { WhatsAppButton } from "@/features/cars/components/WhatsAppButton";
 import { CarImage } from "@/features/cars/components/CarImage";
+import { CarStatusBadge } from "@/features/cars/components/CarStatusBadge";
 import { cn } from "@/lib/utils";
 
 type CarCardProps = {
   car: Car;
   index?: number;
 };
-
-function StatusBadge({ status, lang }: { status: string; lang: "ar" | "en" }) {
-  const key = getStatusKey(status);
-  const labels = t.cars.status;
-  const label = key && key in labels ? labels[key as keyof typeof labels][lang] : status;
-
-  const tone =
-    key === "available"
-      ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-300"
-      : key === "sold"
-        ? "bg-muted/60 border-border text-muted-foreground"
-        : key === "reserved"
-          ? "bg-amber-500/15 border-amber-500/40 text-amber-300"
-          : "bg-primary/20 border-primary/40 text-primary-glow";
-
-  return (
-    <span
-      className={cn(
-        "text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full border backdrop-blur-sm",
-        tone,
-      )}
-    >
-      {label}
-    </span>
-  );
-}
 
 function FeaturedBadge({ label }: { label: string }) {
   return (
@@ -92,12 +67,18 @@ export const CarCard = memo(function CarCard({ car, index = 0 }: CarCardProps) {
   const detailSlug = getCarDetailSlug(car);
   const { isFavorite, toggleFavorite } = useFavorite(detailSlug);
   const isNew = (car.condition ?? "").toLowerCase() === "new";
+  const sold = isCarSold(car);
 
   if (!detailSlug) return null;
 
   return (
     <Reveal delay={index * 70}>
-      <article className="group relative glass rounded-2xl overflow-hidden hover:-translate-y-1.5 hover:border-primary/50 hover:shadow-[var(--shadow-glow)] transition-all duration-500 h-full flex flex-col">
+      <article
+        className={cn(
+          "group relative glass rounded-2xl overflow-hidden hover:-translate-y-1.5 hover:border-primary/50 hover:shadow-[var(--shadow-glow)] transition-all duration-500 h-full flex flex-col",
+          sold && "opacity-95",
+        )}
+      >
         <Link
           to="/cars/$slug"
           params={{ slug: detailSlug }}
@@ -111,6 +92,7 @@ export const CarCard = memo(function CarCard({ car, index = 0 }: CarCardProps) {
               priority={index === 0}
               fallbackLabel={tr(t.cars.noImage)}
               onError={() => setImageFailed(true)}
+              className={cn(sold && "grayscale-[0.35]")}
             />
           ) : (
             <CarCardImagePlaceholder label={tr(t.cars.noImage)} />
@@ -121,7 +103,7 @@ export const CarCard = memo(function CarCard({ car, index = 0 }: CarCardProps) {
         {/* Badges — top start */}
         <div className="absolute top-3 start-3 z-10 flex flex-col items-start gap-1.5">
           {car.is_featured ? <FeaturedBadge label={tr(t.cars.badges.featured)} /> : null}
-          {car.status ? <StatusBadge status={car.status} lang={lang} /> : null}
+          <CarStatusBadge car={car} />
           {isNew && !car.is_featured ? (
             <span className="text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full border border-primary/40 bg-primary/20 text-primary-glow backdrop-blur-sm">
               {tr(t.cars.badges.new)}

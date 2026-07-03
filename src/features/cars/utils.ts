@@ -67,6 +67,24 @@ export function getStatusKey(status: string | null | undefined): string | null {
   return null;
 }
 
+export function isCarSold(car: Pick<Car, "status">): boolean {
+  return getStatusKey(car.status) === "sold";
+}
+
+/** Prefers API status_label, then i18n fallback from status key. */
+export function getCarStatusLabel(
+  car: Pick<Car, "status" | "status_label">,
+  lang: Lang,
+  fallbackLabels?: Record<string, { ar: string; en: string }>,
+): string | null {
+  if (car.status_label?.trim()) return car.status_label.trim();
+
+  const key = getStatusKey(car.status);
+  if (key && fallbackLabels?.[key]) return fallbackLabels[key][lang];
+
+  return car.status?.trim() || null;
+}
+
 /** Reads a car field from top-level properties, localized labels, or nested specs. */
 export function getCarField(car: Car, field: keyof Car, specKeys?: string[]): string | null {
   const record = car as unknown as Record<string, unknown>;

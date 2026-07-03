@@ -1,6 +1,7 @@
 import { z } from "zod";
 import {
   CAR_SORT_VALUES,
+  CAR_STATUS_VALUES,
   DEFAULT_CAR_SORT,
   type CarsListParams,
   type CarsSearchParams,
@@ -58,6 +59,7 @@ export const carsSearchSchema = z.object({
   condition: optionalTrimmedString,
   city: optionalTrimmedString,
   sort: z.enum(CAR_SORT_VALUES).optional().catch(undefined),
+  status: z.enum(CAR_STATUS_VALUES).optional().catch(undefined),
 });
 
 export function parseCarsSearch(raw: unknown): CarsSearchParams {
@@ -109,6 +111,7 @@ export function carsSearchToListParams(search: CarsSearchParams, perPage: number
     "fuel_type",
     "condition",
     "city",
+    "status",
   ] as const satisfies ReadonlyArray<keyof CarsSearchParams & keyof CarsListParams>;
 
   for (const key of copyKeys) {
@@ -146,6 +149,7 @@ const FILTER_KEYS = [
   "fuel_type",
   "condition",
   "city",
+  "status",
   "sort",
 ] as const satisfies ReadonlyArray<keyof CarsSearchParams>;
 

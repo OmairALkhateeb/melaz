@@ -1,7 +1,7 @@
 import type { Car } from "@/lib/api/types";
 import { translations as t } from "@/lib/i18n";
 import { useTr } from "@/components/site/SiteShell";
-import { formatCarPrice, formatMileage, getCarCity, getCarField } from "@/features/cars/utils";
+import { formatCarPrice, formatMileage, getCarCity, getCarField, getCarStatusLabel } from "@/features/cars/utils";
 
 type CarSpecsProps = {
   car: Car;
@@ -18,6 +18,7 @@ export function CarSpecs({ car, price }: CarSpecsProps) {
 
   const mileage = formatMileage(car.mileage, lang, tr(t.cars.mileageUnit));
   const city = getCarCity(car);
+  const statusLabel = getCarStatusLabel(car, lang, t.cars.status);
 
   const items: SpecItem[] = [
     { label: tr(t.cars.labels.brand), value: getCarField(car, "brand") ?? "" },
@@ -47,6 +48,7 @@ export function CarSpecs({ car, price }: CarSpecsProps) {
       label: tr(t.cars.labels.condition),
       value: getCarField(car, "condition", ["condition", "car_condition"]) ?? "",
     },
+    { label: tr(t.cars.filters.status), value: statusLabel ?? "" },
     { label: tr(t.cars.labels.city), value: city ?? "" },
     { label: tr(t.cars.labels.mileage), value: mileage ?? "" },
   ].filter((item) => item.value.trim().length > 0);

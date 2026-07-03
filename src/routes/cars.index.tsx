@@ -21,15 +21,15 @@ export const Route = createFileRoute("/cars/")({
   component: CarsRoute,
   head: () => ({
     meta: [
-      { title: "Available Cars — AL MELAZ MOTORS" },
+      { title: "Cars — AL MELAZ MOTORS" },
       {
         name: "description",
-        content: "Browse cars currently available at AL MELAZ MOTORS — photos, specs and prices.",
+        content: "Browse available and sold cars at AL MELAZ MOTORS — photos, specs and prices.",
       },
-      { property: "og:title", content: "Available Cars — AL MELAZ MOTORS" },
+      { property: "og:title", content: "Cars — AL MELAZ MOTORS" },
       {
         property: "og:description",
-        content: "Browse cars currently available at AL MELAZ MOTORS.",
+        content: "Browse available and sold cars at AL MELAZ MOTORS.",
       },
       { property: "og:type", content: "website" },
     ],

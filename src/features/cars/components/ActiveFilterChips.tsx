@@ -1,7 +1,7 @@
 import { X } from "lucide-react";
 import { translations as t } from "@/lib/i18n";
 import { useTr } from "@/components/site/SiteShell";
-import type { CarFilterOption, CarFilters, CarsSearchParams } from "@/lib/api/types";
+import type { CarFilterOption, CarFilters, CarStatus, CarsSearchParams } from "@/lib/api/types";
 import { resolveLocalized } from "@/lib/api/types";
 import { countActiveFilters } from "@/features/cars/filter-search";
 import type { Lang } from "@/lib/i18n";
@@ -80,6 +80,14 @@ export function ActiveFilterChips({ search, filterMeta, onRemove, onClearAll }: 
     const options = filterMeta?.[metaKey] as CarFilterOption[] | undefined;
     const display = resolveOptionLabel(options, String(value), lang);
     chips.push({ id: key, text: `${tr(label)}: ${display}`, clear: { [key]: undefined } });
+  }
+
+  if (search.status) {
+    chips.push({
+      id: "status",
+      text: `${tr(t.cars.filters.status)}: ${tr(t.cars.status[search.status as CarStatus])}`,
+      clear: { status: undefined },
+    });
   }
 
   const ranges: Array<{

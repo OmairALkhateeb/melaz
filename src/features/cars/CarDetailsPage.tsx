@@ -9,6 +9,7 @@ import { getCarGalleryImages, getCarDescription, getCarTitle } from "@/features/
 import { buildCarPageUrl } from "@/lib/whatsapp";
 import { CarGallery } from "./components/CarGallery";
 import { CarSpecs, CarSpecsSummary, formatDetailPrice } from "./components/CarSpecs";
+import { CarStatusBadge } from "./components/CarStatusBadge";
 import { WhatsAppButton } from "./components/WhatsAppButton";
 import { CarDetailsSkeleton } from "./components/CarDetailsSkeleton";
 import { CarNotFoundState } from "./components/CarNotFoundState";
@@ -92,9 +93,12 @@ function CarDetailsContent({ car }: { car: Car }) {
         <div className="space-y-6">
           <Reveal delay={80}>
             <header>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gradient leading-tight">
-                {title}
-              </h1>
+              <div className="flex flex-wrap items-center gap-2">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gradient leading-tight">
+                  {title}
+                </h1>
+                <CarStatusBadge car={car} className="text-xs normal-case tracking-normal" />
+              </div>
               {subtitle && (
                 <p className="mt-2 text-sm sm:text-base text-muted-foreground">{subtitle}</p>
               )}

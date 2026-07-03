@@ -1,8 +1,8 @@
 import { useCallback, useMemo } from "react";
 import { translations as t } from "@/lib/i18n";
 import { useTr } from "@/components/site/SiteShell";
-import type { CarFilters, CarSort, CarsSearchParams } from "@/lib/api/types";
-import { CAR_SORT_VALUES, DEFAULT_CAR_SORT } from "@/lib/api/types";
+import type { CarFilters, CarSort, CarsSearchParams, CarStatus } from "@/lib/api/types";
+import { CAR_SORT_VALUES, CAR_STATUS_VALUES, DEFAULT_CAR_SORT } from "@/lib/api/types";
 import { FilterField } from "./FilterField";
 import { FilterSelect } from "./FilterSelect";
 import { FilterRangeInputs } from "./FilterRangeInputs";
@@ -31,6 +31,15 @@ export function FilterForm({
       CAR_SORT_VALUES.map((value) => ({
         value,
         label: tr(t.cars.filters.sortOptions[value as CarSort]),
+      })),
+    [tr],
+  );
+
+  const statusOptions = useMemo(
+    () =>
+      CAR_STATUS_VALUES.map((value) => ({
+        value,
+        label: tr(t.cars.status[value as CarStatus]),
       })),
     [tr],
   );
@@ -92,6 +101,17 @@ export function FilterForm({
               sort: !sort || sort === DEFAULT_CAR_SORT ? undefined : (sort as CarSort),
             })
           }
+          disabled={isMetaLoading}
+        />
+      </FilterField>
+
+      <FilterField label={tr(t.cars.filters.status)} htmlFor="car-status">
+        <FilterSelect
+          id="car-status"
+          value={values.status}
+          placeholder={tr(t.cars.filters.allStatuses)}
+          options={statusOptions}
+          onChange={(status) => onChange({ status: status as CarStatus | undefined })}
           disabled={isMetaLoading}
         />
       </FilterField>
