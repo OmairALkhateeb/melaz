@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Car, MessageCircle, Instagram, Phone, Sparkles, ArrowRight } from "lucide-react";
+import { Car, MessageCircle, Instagram, Phone, ArrowRight } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { translations as t, links } from "@/lib/i18n";
 import { SiteShell, SectionHeader, useTr } from "@/components/site/SiteShell";
@@ -45,7 +45,7 @@ function Index() {
   return (
     <SiteShell>
       {/* HERO + SEARCH */}
-      <section id="home" className="relative pt-28 pb-12 sm:pt-32 sm:pb-16 lg:pt-40">
+      <section id="home" className="relative pt-28 pb-10 sm:pt-32 sm:pb-12 lg:pt-36">
         <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div
@@ -60,7 +60,7 @@ function Index() {
         </div>
 
         <div className="container mx-auto px-4 sm:px-5 relative">
-          <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+          <div className="flex flex-col items-center text-center max-w-2xl mx-auto">
             <div className="relative animate-fade-up">
               <div className="absolute inset-0 bg-primary/30 blur-3xl rounded-full animate-pulse-glow" />
               <img
@@ -69,38 +69,56 @@ function Index() {
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
-                className="relative w-52 sm:w-72 lg:w-[26rem] object-contain drop-shadow-[0_0_60px_oklch(0.62_0.22_290_/_0.7)]"
+                className="relative w-44 sm:w-56 lg:w-64 object-contain drop-shadow-[0_0_60px_oklch(0.62_0.22_290_/_0.7)]"
               />
             </div>
 
-            <span
-              className="mt-4 inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-[11px] sm:text-xs glass text-primary-glow animate-fade-up"
-              style={{ animationDelay: "0.1s" }}
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              {tr(t.hero.badge)}
-            </span>
-
             <h1
-              className="mt-4 text-2xl sm:text-4xl md:text-5xl font-bold leading-tight text-gradient animate-fade-up"
-              style={{ animationDelay: "0.2s" }}
+              className="mt-5 text-xl sm:text-3xl font-bold leading-tight text-gradient animate-fade-up"
+              style={{ animationDelay: "0.1s" }}
             >
               {tr(t.hero.title)}
             </h1>
 
             <p
-              className="mt-4 text-sm sm:text-base text-muted-foreground max-w-2xl leading-relaxed animate-fade-up"
-              style={{ animationDelay: "0.3s" }}
+              className="mt-2 text-xs sm:text-sm text-muted-foreground animate-fade-up"
+              style={{ animationDelay: "0.2s" }}
             >
               {tr(t.hero.desc)}
             </p>
           </div>
 
           <div
-            className="mt-8 sm:mt-10 max-w-4xl mx-auto animate-fade-up"
-            style={{ animationDelay: "0.4s" }}
+            className="mt-6 sm:mt-8 animate-fade-up"
+            style={{ animationDelay: "0.3s" }}
           >
             <HeroSearch />
+          </div>
+
+          <div
+            className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 animate-fade-up"
+            style={{ animationDelay: "0.4s" }}
+          >
+            <Link
+              to="/cars"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold text-white btn-browse"
+            >
+              <Car className="w-4 h-4" />
+              {tr(t.hero.ctaBrowse)}
+              <ArrowRight
+                className={`w-3.5 h-3.5 ${lang === "ar" ? "rotate-180" : ""}`}
+                aria-hidden
+              />
+            </Link>
+            <a
+              href={links.whatsapp}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium glass hover:border-primary transition-colors"
+            >
+              <MessageCircle className="w-4 h-4 text-primary-glow" />
+              {tr(t.hero.ctaWa)}
+            </a>
           </div>
         </div>
       </section>
