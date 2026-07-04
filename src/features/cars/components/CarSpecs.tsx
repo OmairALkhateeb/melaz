@@ -86,7 +86,7 @@ export function CarSpecsSummary({ car, price }: CarSpecsProps) {
 
   return (
     <div className="space-y-3">
-      <p className="text-2xl sm:text-3xl font-bold text-gradient">{price}</p>
+      <p className="text-xl sm:text-3xl font-bold text-gradient">{price}</p>
       {highlights.length > 0 && (
         <p className="text-sm text-muted-foreground">{highlights.join(" · ")}</p>
       )}

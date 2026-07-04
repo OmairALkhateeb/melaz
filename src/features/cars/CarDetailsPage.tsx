@@ -43,11 +43,11 @@ export function CarDetailsPage({ slug, initialCar }: CarDetailsPageProps) {
 
   return (
     <SiteShell>
-      <section className="relative pt-36 pb-16 lg:pt-44">
+      <section className="relative pt-28 pb-12 sm:pt-36 sm:pb-16 lg:pt-44">
         <div className="container mx-auto px-4 sm:px-5">
           <Link
             to="/cars"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary-glow transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary-glow transition-colors mb-4 sm:mb-6"
           >
             <ArrowLeft className={cn("w-4 h-4", lang === "ar" && "rotate-180")} aria-hidden />
             {tr(t.cars.detail.backToCars)}
@@ -85,23 +85,21 @@ function CarDetailsContent({ car }: { car: Car }) {
       <meta itemProp="name" content={title} />
       {car.price != null && <meta itemProp="price" content={String(car.price)} />}
 
-      <div className="grid lg:grid-cols-2 gap-8 xl:gap-12 items-start">
+      <div className="grid lg:grid-cols-2 gap-5 sm:gap-8 xl:gap-12 items-start">
         <Reveal>
           <CarGallery images={images} />
         </Reveal>
 
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           <Reveal delay={80}>
-            <header>
-              <div className="flex flex-wrap items-center gap-2">
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gradient leading-tight">
-                  {title}
-                </h1>
-                <CarStatusBadge car={car} className="text-xs normal-case tracking-normal" />
-              </div>
-              {subtitle && (
-                <p className="mt-2 text-sm sm:text-base text-muted-foreground">{subtitle}</p>
-              )}
+            <header className="space-y-2.5">
+              <CarStatusBadge car={car} className="text-xs normal-case tracking-normal" />
+              <h1 className="text-xl sm:text-3xl lg:text-4xl font-bold text-gradient leading-tight">
+                {title}
+              </h1>
+              {subtitle ? (
+                <p className="text-sm sm:text-base text-muted-foreground">{subtitle}</p>
+              ) : null}
             </header>
           </Reveal>
 
@@ -120,7 +118,7 @@ function CarDetailsContent({ car }: { car: Car }) {
         </div>
       </div>
 
-      <div className="mt-10 space-y-8">
+      <div className="mt-8 sm:mt-10 space-y-6 sm:space-y-8">
         <Reveal delay={100}>
           <CarSpecs car={car} price={price} />
         </Reveal>
