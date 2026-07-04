@@ -85,8 +85,8 @@ export function CarSpecsSummary({ car, price }: CarSpecsProps) {
   ].filter(Boolean) as string[];
 
   return (
-    <div className="space-y-3">
-      <p className="text-xl sm:text-3xl font-bold text-gradient">{price}</p>
+    <div className="space-y-2 sm:space-y-3">
+      <p className="text-lg sm:text-2xl lg:text-3xl font-bold text-gradient leading-tight">{price}</p>
       {highlights.length > 0 && (
         <p className="text-sm text-muted-foreground">{highlights.join(" · ")}</p>
       )}

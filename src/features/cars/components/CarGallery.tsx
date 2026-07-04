@@ -1,63 +1,141 @@
 import { useCallback, useEffect, useState } from "react";
-import { Car as CarIcon } from "lucide-react";
+import { Car as CarIcon, ChevronLeft, ChevronRight } from "lucide-react";
 import { translations as t } from "@/lib/i18n";
 import { useTr } from "@/components/site/SiteShell";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from "@/components/ui/carousel";
 import type { GalleryImage } from "@/features/cars/utils";
-import { CarImage } from "@/features/cars/components/CarImage";
 import { cn } from "@/lib/utils";
 
-/** Main slide — wider on desktop; 4:3 on phones keeps the car fully visible. */
-const MAIN_SLIDE =
-  "relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] bg-[var(--gradient-card)]";
-
-/** Show the whole car in the hero; thumbnails may crop slightly. */
-const MAIN_IMAGE = "object-contain object-center bg-black/20";
+/**
+ * Detail gallery frame — capped on phones so the hero does not dominate the viewport.
+ */
+export const DETAIL_GALLERY_FRAME = cn(
+  "relative w-full max-w-full overflow-hidden bg-[var(--gradient-card)]",
+  "h-[clamp(11rem,48vw,13.5rem)]",
+  "sm:h-[clamp(12.5rem,42vw,16rem)]",
+  "md:h-[clamp(14rem,36vw,18rem)]",
+  "lg:aspect-[4/3] lg:h-auto lg:max-h-[22rem] xl:max-h-[24rem]",
+);
 
 type CarGalleryProps = {
   images: GalleryImage[];
 };
 
+function GalleryHero({
+  image,
+  failed,
+  onError,
+  noImageLabel,
+}: {
+  image: GalleryImage;
+  failed: boolean;
+  onError: () => void;
+  noImageLabel: string;
+}) {
+  if (failed) {
+    return (
+      <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(ellipse_at_center,oklch(0.30_0.08_295/0.35),transparent_70%)]">
+        <CarIcon className="w-16 h-16 text-primary-glow/60" strokeWidth={1.2} aria-hidden />
+        <span className="absolute bottom-3 inset-x-0 text-center text-xs text-muted-foreground">
+          {noImageLabel}
+        </span>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={image.url}
+      alt={image.alt}
+      loading="eager"
+      decoding="async"
+      fetchPriority="high"
+      referrerPolicy="no-referrer"
+      onError={onError}
+      className="absolute inset-0 h-full w-full object-contain object-center"
+    />
+  );
+}
+
+function GalleryThumb({
+  image,
+  selected,
+  onSelect,
+}: {
+  image: GalleryImage;
+  selected: boolean;
+  onSelect: () => void;
+}) {
+  const [failed, setFailed] = useState(false);
+
+  return (
+    <button
+      type="button"
+      role="tab"
+      aria-selected={selected}
+      onClick={onSelect}
+      aria-label={image.alt}
+      className={cn(
+        "relative shrink-0 snap-start rounded-md overflow-hidden border-2 transition-all",
+        "w-[3.75rem] h-[2.75rem] sm:w-20 sm:h-[3.75rem]",
+        selected ? "border-primary glow-soft opacity-100" : "border-border/50 opacity-75 hover:opacity-100",
+      )}
+    >
+      {!failed ? (
+        <img
+          src={image.url}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          referrerPolicy="no-referrer"
+          onError={() => setFailed(true)}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center bg-muted/30">
+          <CarIcon className="w-5 h-5 text-muted-foreground" aria-hidden />
+        </div>
+      )}
+    </button>
+  );
+}
+
 export function CarGallery({ images }: CarGalleryProps) {
   const { lang, tr } = useTr();
-  const [api, setApi] = useState<CarouselApi>();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [heroFailed, setHeroFailed] = useState(false);
 
-  const onSelect = useCallback(() => {
-    if (!api) return;
-    setActiveIndex(api.selectedScrollSnap());
-  }, [api]);
+  const count = images.length;
+  const safeIndex = count > 0 ? ((activeIndex % count) + count) % count : 0;
+  const current = images[safeIndex];
 
   useEffect(() => {
-    if (!api) return;
-    onSelect();
-    api.on("select", onSelect);
-    return () => {
-      api.off("select", onSelect);
-    };
-  }, [api, onSelect]);
+    setHeroFailed(false);
+  }, [safeIndex, current?.url]);
 
-  if (!images.length) {
+  const goPrev = useCallback(() => {
+    if (count <= 1) return;
+    setActiveIndex((i) => (i - 1 + count) % count);
+  }, [count]);
+
+  const goNext = useCallback(() => {
+    if (count <= 1) return;
+    setActiveIndex((i) => (i + 1) % count);
+  }, [count]);
+
+  if (!count || !current) {
     return (
       <div
-        className={cn(MAIN_SLIDE, "rounded-2xl overflow-hidden glass")}
+        className={cn(DETAIL_GALLERY_FRAME, "rounded-xl sm:rounded-2xl glass")}
         role="img"
         aria-label={tr(t.cars.noImage)}
       >
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,oklch(0.45_0.20_295/0.35),transparent_70%)]">
           <CarIcon
-            className="absolute inset-0 m-auto w-20 h-20 text-primary-glow/60"
+            className="absolute inset-0 m-auto w-16 h-16 text-primary-glow/60"
             strokeWidth={1.2}
             aria-hidden
           />
-          <span className="absolute bottom-4 inset-x-0 text-center text-sm text-muted-foreground">
+          <span className="absolute bottom-3 inset-x-0 text-center text-xs text-muted-foreground">
             {tr(t.cars.noImage)}
           </span>
         </div>
@@ -66,87 +144,56 @@ export function CarGallery({ images }: CarGalleryProps) {
   }
 
   return (
-    <div
-      className="space-y-3 sm:space-y-4"
-      role="region"
-      aria-roledescription="carousel"
-      aria-label={images[0]?.alt}
-    >
-      <div className="relative glass rounded-xl sm:rounded-2xl overflow-hidden">
-        <Carousel
-          setApi={setApi}
-          opts={{ loop: images.length > 1, align: "start" }}
-          className="w-full"
-        >
-          <CarouselContent className="-ml-0">
-            {images.map((image, index) => (
-              <CarouselItem key={`${image.url}-${index}`} className="pl-0 basis-full">
-                <div className={MAIN_SLIDE}>
-                  <CarImage
-                    src={image.url}
-                    alt={image.alt}
-                    priority={index === 0}
-                    fallbackLabel={tr(t.cars.noImage)}
-                    className={MAIN_IMAGE}
-                  />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
+    <div className="w-full min-w-0 space-y-2.5 sm:space-y-3" role="region" aria-label={current.alt}>
+      <div className={cn(DETAIL_GALLERY_FRAME, "glass rounded-xl sm:rounded-2xl")}>
+        <GalleryHero
+          key={current.url}
+          image={current}
+          failed={heroFailed}
+          onError={() => setHeroFailed(true)}
+          noImageLabel={tr(t.cars.noImage)}
+        />
 
-          {images.length > 1 && (
-            <>
-              <CarouselPrevious
-                aria-label={tr(t.cars.detail.galleryPrev)}
-                className={cn(
-                  "hidden sm:flex left-3 top-1/2 -translate-y-1/2 glass border-border/80 hover:border-primary h-9 w-9",
-                  lang === "ar" && "left-auto right-3 rotate-180",
-                )}
-              />
-              <CarouselNext
-                aria-label={tr(t.cars.detail.galleryNext)}
-                className={cn(
-                  "hidden sm:flex right-3 top-1/2 -translate-y-1/2 glass border-border/80 hover:border-primary h-9 w-9",
-                  lang === "ar" && "right-auto left-3 rotate-180",
-                )}
-              />
-            </>
-          )}
-        </Carousel>
-
-        {images.length > 1 && (
-          <div
-            className="absolute bottom-2.5 end-2.5 px-2.5 py-1 rounded-full text-[11px] sm:text-xs glass border border-border/60"
-            aria-live="polite"
-          >
-            {activeIndex + 1} / {images.length}
-          </div>
+        {count > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={goPrev}
+              aria-label={tr(t.cars.detail.galleryPrev)}
+              className={cn(
+                "absolute top-1/2 -translate-y-1/2 z-10 h-8 w-8 inline-flex items-center justify-center rounded-full glass border border-border/80 hover:border-primary",
+                lang === "ar" ? "right-2" : "left-2",
+              )}
+            >
+              <ChevronLeft className={cn("w-4 h-4", lang === "ar" && "rotate-180")} aria-hidden />
+            </button>
+            <button
+              type="button"
+              onClick={goNext}
+              aria-label={tr(t.cars.detail.galleryNext)}
+              className={cn(
+                "absolute top-1/2 -translate-y-1/2 z-10 h-8 w-8 inline-flex items-center justify-center rounded-full glass border border-border/80 hover:border-primary",
+                lang === "ar" ? "left-2" : "right-2",
+              )}
+            >
+              <ChevronRight className={cn("w-4 h-4", lang === "ar" && "rotate-180")} aria-hidden />
+            </button>
+            <div className="absolute bottom-2 end-2 px-2 py-0.5 rounded-full text-[10px] sm:text-xs glass border border-border/60">
+              {safeIndex + 1} / {count}
+            </div>
+          </>
         )}
       </div>
 
-      {images.length > 1 && (
-        <div
-          className="flex gap-2.5 overflow-x-auto pb-1 snap-x snap-mandatory"
-          role="tablist"
-        >
+      {count > 1 && (
+        <div className="flex gap-2 overflow-x-auto pb-0.5 snap-x snap-mandatory min-w-0" role="tablist">
           {images.map((image, index) => (
-            <button
+            <GalleryThumb
               key={`thumb-${image.url}-${index}`}
-              type="button"
-              role="tab"
-              aria-selected={activeIndex === index}
-              onClick={() => api?.scrollTo(index)}
-              aria-label={image.alt}
-              className={cn(
-                "relative shrink-0 snap-start rounded-lg overflow-hidden border-2 transition-all",
-                "w-[4.75rem] h-[3.5rem] sm:w-24 sm:h-[4.5rem]",
-                activeIndex === index
-                  ? "border-primary glow-soft opacity-100"
-                  : "border-border/50 opacity-75 hover:opacity-100",
-              )}
-            >
-              <CarImage src={image.url} alt="" className="object-cover" />
-            </button>
+              image={image}
+              selected={safeIndex === index}
+              onSelect={() => setActiveIndex(index)}
+            />
           ))}
         </div>
       )}
