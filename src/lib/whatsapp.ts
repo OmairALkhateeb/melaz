@@ -1,6 +1,6 @@
 import { links, type Lang } from "@/lib/i18n";
 
-const FALLBACK_WHATSAPP_PHONE = "963994396648";
+const FALLBACK_WHATSAPP_PHONE = "9639941885966";
 
 export type BuildCarWhatsAppUrlOptions = {
   carTitle: string;

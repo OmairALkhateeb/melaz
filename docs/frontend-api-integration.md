@@ -13,7 +13,7 @@ Create a `.env` file in the project root (copy from `.env.example`):
 | Variable | Required | Description | Example |
 |----------|----------|-------------|---------|
 | `VITE_API_BASE_URL` | **Yes** | Laravel API origin (no trailing slash) | `http://melaz-motors.livetech.it.com` |
-| `VITE_WHATSAPP_NUMBER` | Recommended | Default business WhatsApp (international digits) | `963994396648` |
+| `VITE_WHATSAPP_NUMBER` | Recommended | Default business WhatsApp (international digits) | `9639941885966` |
 | `VITE_SITE_URL` | Optional | Public site URL for WhatsApp message links | `https://almelazmotors.com` |
 
 **Notes**
@@ -130,7 +130,7 @@ The frontend validates responses with Zod (`src/lib/api/schemas.ts`).
   "engine_size": "2.5L",
   "drivetrain": "FWD",
   "condition": "used",
-  "whatsapp_number": "963994396648",
+  "whatsapp_number": "9639941885966",
   "status": "available",
   "featured_image": "/storage/cars/photo.jpg",
   "images": [
@@ -209,7 +209,7 @@ cp .env.example .env
 
 # 2. Edit .env
 #    VITE_API_BASE_URL=http://localhost:8000
-#    VITE_WHATSAPP_NUMBER=963994396648
+#    VITE_WHATSAPP_NUMBER=9639941885966
 
 # 3. Install & run
 npm install
@@ -252,7 +252,7 @@ Edit `.env`:
 ```env
 VITE_API_BASE_URL=http://melaz-motors.livetech.it.com
 VITE_SITE_URL=https://almelazmotors.com
-VITE_WHATSAPP_NUMBER=963994396648
+VITE_WHATSAPP_NUMBER=9639941885966
 ```
 
 Restart `npm run dev`.
@@ -266,7 +266,7 @@ Set environment variables in your hosting platform **before** running `npm run b
 ```env
 VITE_API_BASE_URL=http://melaz-motors.livetech.it.com
 VITE_SITE_URL=https://almelazmotors.com
-VITE_WHATSAPP_NUMBER=963994396648
+VITE_WHATSAPP_NUMBER=9639941885966
 ```
 
 Then:

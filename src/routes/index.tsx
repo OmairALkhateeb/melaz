@@ -218,7 +218,7 @@ function Index() {
                   <Phone className="w-4 h-4 text-primary-glow" />
                   <span className="text-sm">{tr(t.contact.phone)}:</span>
                   <a
-                    href={`tel:+963994396648`}
+                    href={`tel:+963${links.phone.replace(/^0/, "")}`}
                     className="text-foreground font-medium tracking-wider"
                     dir="ltr"
                   >

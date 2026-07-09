@@ -355,8 +355,8 @@ export const translations = {
 };
 
 export const links = {
-  whatsapp: "https://wa.me/963994396648",
-  phone: "0994396648",
+  whatsapp: "https://wa.me/9639941885966",
+  phone: "09941885966",
   igOffice: "https://www.instagram.com/al_melaz_motors/",
   igOwner: "https://www.instagram.com/obada.alkhateeb1/",
 };
